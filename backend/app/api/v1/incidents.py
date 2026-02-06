@@ -1,12 +1,17 @@
 """Incident API routes (v1)."""
 
-from fastapi import APIRouter, HTTPException, status
 from typing import List
+from uuid import UUID
+
+from fastapi import APIRouter, HTTPException, status
 
 from app.schemas.incident import (
+    ERPModule,
     IncidentCreateRequest,
+    IncidentStatus,
     IncidentResponse,
     IncidentStatusUpdateRequest,
+    Severity,
 )
 from app.services.incident_service import IncidentService
 
@@ -35,9 +40,9 @@ def create_incident(payload: IncidentCreateRequest):
     summary="List incidents",
 )
 def list_incidents(
-    severity: str | None = None,
-    erp_module: str | None = None,
-    status: str | None = None,
+    severity: Severity | None = None,
+    erp_module: ERPModule | None = None,
+    status: IncidentStatus | None = None,
 ):
     """
     Returns all incidents with optional filters.
@@ -54,9 +59,9 @@ def list_incidents(
     response_model=IncidentResponse,
     summary="Get incident details",
 )
-def get_incident(incident_id: str):
+def get_incident(incident_id: UUID):
     """Fetch a single incident by its ID."""
-    incident = incident_service.get_incident_by_id(incident_id)
+    incident = incident_service.get_incident_by_id(str(incident_id))
     if not incident:
         raise HTTPException(
             status_code=status.HTTP_404_NOT_FOUND,
@@ -71,12 +76,12 @@ def get_incident(incident_id: str):
     summary="Update incident status",
 )
 def update_incident_status(
-    incident_id: str,
+    incident_id: UUID,
     payload: IncidentStatusUpdateRequest,
 ):
     """Update the status of an incident."""
     incident = incident_service.update_incident_status(
-        incident_id=incident_id,
+        incident_id=str(incident_id),
         status=payload.status,
     )
     if not incident:

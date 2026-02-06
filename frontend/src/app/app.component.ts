@@ -13,7 +13,7 @@ import { MatButtonModule } from '@angular/material/button';
       <span>ERP Incident Triage Portal</span>
       <span style="flex: 1 1 auto"></span>
       <a mat-button routerLink="/incidents">Incidents</a>
-      <a mat-button routerLink="/incidents/new">Submit</a>
+      <a mat-button routerLink="/incidents/new">Create Incident</a>
     </mat-toolbar>
 
     <div class="container">
