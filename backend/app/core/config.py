@@ -18,6 +18,17 @@ class Settings(BaseSettings):
     ENV: str = "local"
     DEBUG: bool = True
 
+    # Logging
+    LOG_LEVEL: str = "INFO"
+    LOG_FORMAT: str = "json"  # json|plain
+    LOG_SERVICE_NAME: str = "erp-incident-triage-api"
+
+    # CloudWatch logging (optional)
+    CLOUDWATCH_ENABLED: bool = False
+    AWS_REGION: str | None = None
+    CLOUDWATCH_LOG_GROUP: str | None = None
+    CLOUDWATCH_LOG_STREAM: str | None = None
+
     # Database
     DATABASE_URL: str = (
         "postgresql+psycopg2://<username>:<password>@localhost:5432/erp_incidents"
