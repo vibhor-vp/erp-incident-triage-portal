@@ -29,3 +29,7 @@ uvicorn==0.40.0
 uvloop==0.22.1
 watchfiles==1.1.1
 websockets==16.0
+
+# AWS CloudWatch logging (optional, enabled via CLOUDWATCH_ENABLED=true)
+boto3
+watchtower

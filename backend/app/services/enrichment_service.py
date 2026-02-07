@@ -49,12 +49,9 @@ class EnrichmentService:
     def enrich(self, payload: IncidentCreateRequest) -> dict:
         """Enrich an incident payload with severity, category, and metadata."""
         severity = self._determine_severity(payload)
-        # category = self._determine_category(payload)
 
-        # summary, suggested_action = self._ai_enrich(payload)
-        
         openai_analysis = self._openai_analyze(payload)
-        
+
         if openai_analysis:
             category = openai_analysis.get("category")
             summary = openai_analysis.get("auto_summary")
