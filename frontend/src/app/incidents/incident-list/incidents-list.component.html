@@ -60,14 +60,20 @@
           class="mat-elevation-z1"
           style="width: 100%"
         >
+          <ng-container matColumnDef="title">
+            <th mat-header-cell *matHeaderCellDef>Title</th>
+            <td mat-cell *matCellDef="let row">
+              <a
+                [routerLink]="['/incidents', row.id]"
+                style="text-decoration: underline; cursor: pointer"
+                >{{ row.title }}</a
+              >
+            </td>
+          </ng-container>
+
           <ng-container matColumnDef="created_at">
             <th mat-header-cell *matHeaderCellDef>Created</th>
             <td mat-cell *matCellDef="let row">{{ row.created_at | date: 'short' }}</td>
-          </ng-container>
-
-          <ng-container matColumnDef="title">
-            <th mat-header-cell *matHeaderCellDef>Title</th>
-            <td mat-cell *matCellDef="let row">{{ row.title }}</td>
           </ng-container>
 
           <ng-container matColumnDef="erp_module">

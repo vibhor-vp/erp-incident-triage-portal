@@ -1,5 +1,6 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { RouterLink } from '@angular/router';
 
 import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -22,6 +23,7 @@ import { IncidentsStore } from '../incidents.store';
   standalone: true,
   imports: [
     CommonModule,
+    RouterLink,
     MatCardModule,
     MatFormFieldModule,
     MatSelectModule,
@@ -41,8 +43,8 @@ export class IncidentsListPageComponent implements OnInit {
   readonly statuses = INCIDENT_STATUSES;
 
   readonly displayedColumns = [
-    'created_at',
     'title',
+    'created_at',
     'erp_module',
     'environment',
     'business_unit',

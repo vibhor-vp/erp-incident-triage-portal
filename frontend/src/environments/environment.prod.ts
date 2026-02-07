@@ -1,5 +1,5 @@
 export const environment = {
   production: true,
-  apiBaseUrl: 'https://YOUR_EC2_API_HOST/api/v1',
+  apiBaseUrl: 'http://13.205.200.229:8000/api/v1',
 };
 

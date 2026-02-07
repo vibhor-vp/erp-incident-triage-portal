@@ -1,0 +1,33 @@
+<button mat-button routerLink="/incidents">← Back to incidents</button>
+
+<mat-progress-bar *ngIf="loading()" mode="indeterminate" />
+
+<mat-card *ngIf="error()" style="margin-top: 12px">
+  <mat-card-content style="color: #b00020">{{ error() }}</mat-card-content>
+</mat-card>
+
+<mat-card *ngIf="incident() as i" style="margin-top: 12px">
+  <mat-card-title>{{ i.title }}</mat-card-title>
+  <!-- <mat-card-subtitle>
+    {{ i.id }} • {{ i.created_at | date: 'short' }}
+  </mat-card-subtitle> -->
+
+  <mat-card-content style="display: grid; gap: 10px; margin-top: 8px">
+    <div><strong>Status:</strong> {{ i.status }}</div>
+    <div><strong>Severity:</strong> {{ i.severity }}</div>
+    <div><strong>Category:</strong> {{ i.category }}</div>
+    <div><strong>ERP Module:</strong> {{ i.erp_module }}</div>
+    <div><strong>Environment:</strong> {{ i.environment }}</div>
+    <div><strong>Business Unit:</strong> {{ i.business_unit }}</div>
+
+    <div style="margin-top: 6px"><strong>Description</strong></div>
+    <div style="white-space: pre-wrap">{{ i.description }}</div>
+
+    <div *ngIf="i.auto_summary" style="margin-top: 6px"><strong>Auto Summary</strong></div>
+    <div *ngIf="i.auto_summary" style="white-space: pre-wrap">{{ i.auto_summary }}</div>
+
+    <div *ngIf="i.suggested_action" style="margin-top: 6px"><strong>Suggested Action</strong></div>
+    <div *ngIf="i.suggested_action" style="white-space: pre-wrap">{{ i.suggested_action }}</div>
+  </mat-card-content>
+</mat-card>
+

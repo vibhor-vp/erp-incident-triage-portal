@@ -31,6 +31,12 @@ export class IncidentApiService {
     return this.http.post<IncidentResponse>(`${this.baseUrl}/incidents`, payload);
   }
 
+  getIncident(incidentId: string): Observable<IncidentResponse> {
+    return this.http.get<IncidentResponse>(
+      `${this.baseUrl}/incidents/${encodeURIComponent(incidentId)}`
+    );
+  }
+
   updateIncidentStatus(
     incidentId: string,
     status: IncidentStatus
